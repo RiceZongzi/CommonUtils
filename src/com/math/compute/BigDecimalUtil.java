@@ -43,7 +43,8 @@ public final class BigDecimalUtil {
     }
 
     /**
-     * Compute the square root of x to a given scale, x &gt;= 0.
+     * 计算x的平方根，x >= 0，保留scale位
+     * Compute the square root of x to a given scale, x >= 0.
      * Use Newton's algorithm.
      * @param x the value of x
      * @return the result value
@@ -77,7 +78,7 @@ public final class BigDecimalUtil {
     }
 
     /**
-     * Compute the integral root of x to a given scale, x &gt;= 0.
+     * Compute the integral root of x to a given scale, x >= 0.
      * Use Newton's algorithm.
      * @param x the value of x
      * @param index the integral root value
@@ -136,7 +137,8 @@ public final class BigDecimalUtil {
     }
 
     /**
-     * Compute the natural logarithm of x to a given scale, x &gt; 0.
+     * 计算x的自然对数，x > 0，保留scale位
+     * Compute the natural logarithm of x to a given scale, x > 0.
      * @param x the value
      * @param scale the scale
      * @return the result
@@ -203,6 +205,11 @@ public final class BigDecimalUtil {
         return x.setScale(scale, BigDecimal.ROUND_HALF_EVEN);
     }
 
+    /**
+     * 余弦
+     * @param x
+     * @return
+     */
     public static BigDecimal cosine(BigDecimal x) {
 
         BigDecimal currentValue = BigDecimal.ONE;
@@ -234,6 +241,11 @@ public final class BigDecimalUtil {
         return currentValue;
     }
 
+    /**
+     * 正弦
+     * @param x
+     * @return
+     */
     public static BigDecimal sine(BigDecimal x) {
         BigDecimal lastVal      = x.add(BigDecimal.ONE);
         BigDecimal currentValue = x;
@@ -264,6 +276,11 @@ public final class BigDecimalUtil {
         return currentValue;
     }
 
+    /**
+     * 正切
+     * @param x
+     * @return
+     */
     public static BigDecimal tangent(BigDecimal x) {
 
         BigDecimal sin = sine(x);
@@ -272,6 +289,11 @@ public final class BigDecimalUtil {
         return sin.divide(cos, SCALE, BigDecimal.ROUND_HALF_UP);
     }
 
+    /**
+     * 常用对数
+     * @param b
+     * @return
+     */
     public static BigDecimal log10(BigDecimal b) {
         final int NUM_OF_DIGITS = SCALE + 2;
         // need to add one to get the right number of dp
@@ -315,6 +337,11 @@ public final class BigDecimalUtil {
         return ans;
     }
 
+    /**
+     * 立方根
+     * @param b
+     * @return
+     */
     public static BigDecimal cuberoot(BigDecimal b) {
         // Specify a math context with 40 digits of precision.
 
@@ -330,6 +357,12 @@ public final class BigDecimalUtil {
         return x;
     }
 
+    /**
+     * 幂
+     * @param savedValue
+     * @param value
+     * @return
+     */
     public static BigDecimal pow(BigDecimal savedValue, BigDecimal value) {
         BigDecimal result = null;
         result = exp(ln(savedValue, 32).multiply(value), 32);
@@ -337,6 +370,7 @@ public final class BigDecimalUtil {
     }
 
     /**
+     * 计算x的exponent指数
      * Compute x^exponent to a given scale.  Uses the same
      * algorithm as class numbercruncher.mathutils.IntPower.
      * @param x the value x
@@ -476,14 +510,29 @@ public final class BigDecimalUtil {
         return sum;
     }
 
+    /**
+     * 反正弦
+     * @param val
+     * @return
+     */
     public static BigDecimal asin(BigDecimal val) {
         return BigDecimal.valueOf(Math.asin(val.doubleValue()));
     }
 
+    /**
+     * 反余弦
+     * @param val
+     * @return
+     */
     public static BigDecimal acos(BigDecimal val) {
         return BigDecimal.valueOf(Math.acos(val.doubleValue()));
     }
 
+    /**
+     * 反正切
+     * @param val
+     * @return
+     */
     public static BigDecimal atan(BigDecimal val) {
         return BigDecimal.valueOf(Math.atan(val.doubleValue()));
     }
